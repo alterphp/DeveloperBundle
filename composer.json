@@ -11,8 +11,8 @@
         }
     ],
     "require":      {
-        "alterphp/components": "master",
-        "symfony/symfony":  ">=2.0.9,<2.1.0-dev"
+        "alterphp/components": "~1.0.0",
+        "symfony/symfony":  "~2.0.9"
     },
     "autoload":     {
         "psr-0": { "AlterPHP\\DeveloperBundle": "" }
