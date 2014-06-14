@@ -11,7 +11,7 @@
         }
     ],
     "require":      {
-        "alterphp/components": "~1.1",
+        "alterphp/components": "~1.1@dev",
         "symfony/symfony": "~2.3"
     },
     "autoload":     {
