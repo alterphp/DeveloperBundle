@@ -6,6 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Command\LoadDataFixturesDoctrineCommand;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Finder\Finder;
 
 class LoadAliceFixturesCommand extends LoadDataFixturesDoctrineCommand
@@ -23,8 +24,13 @@ class LoadAliceFixturesCommand extends LoadDataFixturesDoctrineCommand
         $em = $doctrine->getManager($input->getOption('em'));
 
         if ($input->isInteractive() && !$input->getOption('append')) {
-            $dialog = $this->getHelperSet()->get('dialog');
-            if (!$dialog->askConfirmation($output, '<question>Careful, database will be purged. Do you want to continue Y/N ?</question>', false)) {
+            $questionHelper = $this->getHelperSet()->get('question');
+            $question = new ConfirmationQuestion(
+                'Careful, database will be purged. Do you want to continue Y/N ?',
+                false
+            );
+
+            if (!$questionHelper->ask($input, $output, $question)) {
                 return;
             }
         }
